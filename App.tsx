@@ -21,8 +21,9 @@ const sendTelegramNotification = async (
   recipientName: string,
   senderName: string
 ) => {
-  const botToken = "";   // 🔴 replace
-  const chatId = "";       // 🔴 replace
+  const botToken = import.meta.env.VITE_TELEGRAM_BOT_TOKEN;
+const chatId = import.meta.env.VITE_TELEGRAM_CHAT_ID;
+      // 🔴 replace
 
   const message = `💍 ${recipientName} said YES to ${senderName}! ❤️🎉`;
 
