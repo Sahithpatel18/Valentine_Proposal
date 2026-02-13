@@ -107,7 +107,7 @@ const sendTelegramNotification = async (
   triggerNotification();
 
   // 📲 Telegram notification (ADD THIS LINE)
-  sendTelegramNotification(
+  await sendTelegramNotification(
     data.recipientName,
     data.senderName
   );
