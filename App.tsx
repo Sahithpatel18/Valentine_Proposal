@@ -17,35 +17,29 @@ const App: React.FC = () => {
 
 // telegram start here 
 // 📲 Telegram Notification Function
+// 📲 Telegram Notification via Backend API
 const sendTelegramNotification = async (
   recipientName: string,
   senderName: string
 ) => {
-  const botToken = import.meta.env.VITE_TELEGRAM_BOT_TOKEN;
-const chatId = import.meta.env.VITE_TELEGRAM_CHAT_ID;
-      // 🔴 replace
-
-  const message = `💍 ${recipientName} said YES to ${senderName}! ❤️🎉`;
-
-  const url = `https://api.telegram.org/bot${botToken}/sendMessage`;
-
   try {
-    await fetch(url, {
+    await fetch("/api/notify", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        chat_id: chatId,
-        text: message,
+        recipientName,
+        senderName,
       }),
     });
 
-    console.log("Telegram notification sent ✅");
+    console.log("Telegram notification sent via backend ✅");
   } catch (error) {
-    console.error("Telegram error ❌", error);
+    console.error("Telegram backend error ❌", error);
   }
 };
+
 
 
   const handlePhotoUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
