@@ -7,7 +7,12 @@ import { generateLoveContent } from './services/geminiService';
 
 const App: React.FC = () => {
   const [step, setStep] = useState<'setup' | 'proposing' | 'success'>('setup');
-  const [data, setData] = useState<ProposalData>({ recipientName: '', senderName: '', photo: '' });
+  // const [data, setData] = useState<ProposalData>({ recipientName: '', senderName: '', photo: '' });
+  const [data, setData] = useState<ProposalData>({
+  recipientName: 'Shivasree',
+  senderName: 'Sahith',
+  photo: ''
+});
   const [loveContent, setLoveContent] = useState<LoveLetterResponse | null>(null);
   const [noButtonPos, setNoButtonPos] = useState({ x: 0, y: 0 });
   const [isLoading, setIsLoading] = useState(false);
@@ -192,25 +197,31 @@ const sendTelegramNotification = async (
             <div className="grid grid-cols-1 gap-4">
               <div>
                 <label className="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-1 px-1">Her Name</label>
-                <input
+                {/* <input
                   required
                   type="text"
                   className="w-full px-4 py-3 rounded-xl border border-pink-100 focus:outline-none focus:ring-2 focus:ring-pink-400 bg-white shadow-sm"
                   placeholder="Recipient's Name"
                   value={data.recipientName}
                   onChange={(e) => setData({ ...data, recipientName: e.target.value })}
-                />
+                /> */}
+                <input
+  type="text"
+  value={data.recipientName}
+  disabled
+  className="w-full px-4 py-3 rounded-xl bg-gray-100 text-gray-500 cursor-not-allowed"
+/>
+
               </div>
               <div>
                 <label className="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-1 px-1">Your Name</label>
                 <input
-                  required
-                  type="text"
-                  className="w-full px-4 py-3 rounded-xl border border-pink-100 focus:outline-none focus:ring-2 focus:ring-pink-400 bg-white shadow-sm"
-                  placeholder="Sender's Name"
-                  value={data.senderName}
-                  onChange={(e) => setData({ ...data, senderName: e.target.value })}
-                />
+  type="text"
+  value={data.senderName}
+  disabled
+  className="w-full px-4 py-3 rounded-xl bg-gray-100 text-gray-500 cursor-not-allowed"
+/>
+
               </div>
             </div>
             
